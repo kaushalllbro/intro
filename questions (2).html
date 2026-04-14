@@ -1,0 +1,323 @@
+<!-- Congrats, you opened dev tools. Now close it and let her enjoy the experience -->
+<!-- If she sent you this to inspect… She trusts youuuu!!-->
+<!-- Aur haa bhai/bhen, yeh code mene he likha h dil se-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Questions for Sharma Ji</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg1:#f9d1d1;--bg2:#fddcb5;--bg3:#e4d0f5;
+--glass:rgba(255,255,255,0.55);--glass-border:rgba(255,255,255,0.4);
+--text:#3d2c4e;--muted:#8a7399;--primary:#e8729a;--primary-fg:#fff;
+--input-bg:rgba(255,255,255,0.4);--border:rgba(200,180,210,0.4);
+--destructive:#e55;
+}
+.dark{
+--bg1:#2a1a2e;--bg2:#1e1528;--bg3:#261a30;
+--glass:rgba(50,30,60,0.6);--glass-border:rgba(80,50,100,0.4);
+--text:#f0daf5;--muted:#a08aaf;--primary:#e8729a;--primary-fg:#fff;
+--input-bg:rgba(255,255,255,0.08);--border:rgba(100,70,120,0.4);
+--destructive:#f88;
+}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:var(--text);transition:background .4s,color .4s;padding:16px;overflow-x:hidden}
+.theme-btn,.music-btn{position:fixed;z-index:99;width:40px;height:40px;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.theme-btn{top:16px;right:16px}
+.music-btn{top:16px;right:66px;font-size:15px}
+.theme-btn:hover,.music-btn:hover{transform:scale(1.1)}
+.theme-btn:active,.music-btn:active{transform:scale(.95)}
+.container{width:100%;max-width:420px;z-index:10;position:relative}
+.progress{margin-bottom:20px}
+.progress-info{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.progress-track{height:8px;border-radius:99px;background:var(--input-bg);overflow:hidden}
+.progress-fill{height:100%;border-radius:99px;background:var(--primary);transition:width .5s ease}
+.card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:24px;padding:28px;transition:opacity .3s,transform .3s}
+.card.out{opacity:0;transform:translateY(-16px)}
+.card.in{opacity:1;transform:translateY(0)}
+.card h2{font-size:1.15rem;font-weight:600;line-height:1.5;margin-bottom:20px;min-height:1.7em}
+input[type=text],textarea{width:100%;padding:12px 16px;border-radius:16px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:1rem;font-family:inherit;outline:none;transition:box-shadow .2s}
+input[type=text]:focus,textarea:focus{box-shadow:0 0 0 3px rgba(232,114,154,0.3)}
+textarea{resize:none;min-height:100px}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt-btn{position:relative;overflow:hidden;width:100%;padding:14px 20px;border-radius:16px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:1rem;font-weight:500;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.opt-btn:hover{background:var(--primary);color:var(--primary-fg);border-color:var(--primary)}
+.opt-btn:active{transform:scale(.96)}
+.btn-row{display:flex;gap:10px;margin-top:18px}
+.back-btn{position:relative;overflow:hidden;padding:14px;border-radius:16px;border:1px solid var(--border);background:var(--input-bg);color:var(--text);font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;flex:0 0 auto;min-width:52px;display:flex;align-items:center;justify-content:center}
+.back-btn:hover{background:var(--border)}
+.back-btn:active{transform:scale(.96)}
+.next-btn{position:relative;overflow:hidden;padding:14px;border-radius:16px;border:none;background:var(--primary);color:var(--primary-fg);font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;flex:1}
+.next-btn:hover{opacity:.9}
+.next-btn:active{transform:scale(.96)}
+.next-btn:disabled{opacity:.5;cursor:default}
+.error{color:var(--destructive);font-size:.85rem;margin-top:10px}
+.final{text-align:center}
+.final .big-emoji{font-size:3rem;margin-bottom:20px;animation:pulse 2s ease-in-out infinite}
+.final h2{font-size:1.3rem;margin-bottom:16px}
+.final p{color:var(--muted);line-height:1.7;font-size:.95rem}
+.final .end-emoji{font-size:1.8rem;margin-top:24px}
+.final .credit{margin-top:28px;font-size:.8rem;color:var(--muted);opacity:.7}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0);opacity:.5}50%{transform:translateY(-28px) rotate(8deg);opacity:.9}}
+.floater{position:fixed;pointer-events:none;font-size:1.4rem;animation:float 4s ease-in-out infinite;z-index:0}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0}}
+.typing-cursor{display:inline-block;width:2px;height:1em;background:var(--primary);margin-left:2px;animation:blink .6s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+.hearts-container{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+.heart-particle{position:absolute;font-size:1.6rem;animation:heartBurst var(--dur) ease-out forwards;opacity:0}
+@keyframes heartBurst{
+0%{opacity:1;transform:translate(0,0) scale(0.5) rotate(0deg)}
+20%{opacity:1;transform:translate(var(--dx1),var(--dy1)) scale(1.1) rotate(var(--rot))}
+100%{opacity:0;transform:translate(var(--dx2),var(--dy2)) scale(0.3) rotate(calc(var(--rot)*2))}
+}
+</style>
+</head>
+<body>
+<button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🔇</button>
+<div id="floaters"></div>
+<div id="heartsBurst"></div>
+<div class="container">
+  <div class="progress" id="progressWrap">
+    <div class="progress-info"><span id="progText">1 of 11</span><span id="progPct">9%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progFill" style="width:9%"></div></div>
+  </div>
+  <div class="card in" id="card"></div>
+</div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import{getDatabase,ref,push}from"https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+
+const app=initializeApp({apiKey:"AIzaSyCTVb-DQ3eZJdsITslADyPwBLX0ZdXlCb0",authDomain:"questions-24.firebaseapp.com",databaseURL:"https://questions-24-default-rtdb.firebaseio.com",projectId:"questions-24",storageBucket:"questions-24.firebasestorage.app",messagingSenderId:"719647909261",appId:"1:719647909261:web:0f78b4f006b03b38f8c9c4",measurementId:"G-Z3151Q86EQ"});
+const db=getDatabase(app);
+
+const Qs=[
+{id:"name",text:"What should I call you?? 🥰",type:"text",ph:"your name or nickname…"},
+{id:"coffeeOrTea",text:"Coffee ☕ or Tea 🍵?",type:"btn",opts:["Coffee ☕","Tea 🍵"]},
+{id:"personality",text:"Are you more introvert, extrovert, or depends on the person?",type:"btn",opts:["Introvert 🌿","Extrovert 🎉","Depends 🤷"]},
+{id:"hobby",text:"One thing you really enjoy doing in your free time? 🎨",type:"text",ph:"reading, gaming, cooking…"},
+{id:"beachOrMountains",text:"Beach 🏖️ or Mountains ⛰️?",type:"btn",opts:["Beach 🏖️","Mountains ⛰️"]},
+{id:"peopleType",text:"What kind of people do you like talking to? 🗣️",type:"text",ph:"funny, deep, chill…"},
+{id:"smallJoy",text:"What's a small thing that makes you happy? 😊",type:"text",ph:"sunsets, good songs, warm blankets…"},
+{id:"chatTime",text:"Late-night chats 🌙 or random daytime texts ☀️?",type:"btn",opts:["Late-night 🌙","Daytime ☀️"]},
+{id:"firstImpression",text:"First impression of me? (be honest 😄)",type:"text",ph:"don't hold back haha"},
+{id:"funThing",text:"If we ever met, what would be a fun thing to do together? 🤔",type:"text",ph:"road trip, café, stargazing…"},
+{id:"anythingElse",text:"Anything you wanna tell me?? 💬",type:"area",ph:"could be anything… I'll read it properly n keep it in mind!! 🙂"}
+];
+
+let cur=0,answers={},transitioning=false;
+const card=document.getElementById("card");
+const progText=document.getElementById("progText");
+const progPct=document.getElementById("progPct");
+const progFill=document.getElementById("progFill");
+const progWrap=document.getElementById("progressWrap");
+
+function vib(ms){try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}}
+
+function addRipple(e,el){
+  const r=document.createElement("span");r.className="ripple";
+  const rect=el.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height)*2;
+  r.style.width=r.style.height=size+"px";
+  r.style.left=(e.clientX||e.touches?.[0]?.clientX||rect.left+rect.width/2)-rect.left-size/2+"px";
+  r.style.top=(e.clientY||e.touches?.[0]?.clientY||rect.top+rect.height/2)-rect.top-size/2+"px";
+  el.appendChild(r);
+  r.addEventListener("animationend",()=>r.remove());
+}
+
+function burstHearts(){
+  const container=document.getElementById("heartsBurst");
+  const hearts=["💖","💗","💕","💓","🩷","🤍","✨","💘"];
+  const cx=window.innerWidth/2,cy=window.innerHeight/2;
+  for(let i=0;i<28;i++){
+    const h=document.createElement("span");
+    h.className="heart-particle";
+    h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    const angle=Math.random()*Math.PI*2;
+    const dist1=60+Math.random()*80;
+    const dist2=150+Math.random()*200;
+    const rot=(Math.random()-0.5)*180;
+    const dur=1.2+Math.random()*1;
+    h.style.left=cx+"px";
+    h.style.top=cy+"px";
+    h.style.setProperty("--dx1",Math.cos(angle)*dist1+"px");
+    h.style.setProperty("--dy1",Math.sin(angle)*dist1+"px");
+    h.style.setProperty("--dx2",Math.cos(angle)*dist2+"px");
+    h.style.setProperty("--dy2",(Math.sin(angle)*dist2+80)+"px");
+    h.style.setProperty("--rot",rot+"deg");
+    h.style.setProperty("--dur",dur+"s");
+    h.style.fontSize=(1+Math.random()*1.2)+"rem";
+    container.appendChild(h);
+    h.addEventListener("animationend",()=>h.remove());
+  }
+}
+
+function saveState(){localStorage.setItem("pq_cur",cur);localStorage.setItem("pq_ans",JSON.stringify(answers))}
+function loadState(){
+  try{
+    const sc=localStorage.getItem("pq_cur"),sa=localStorage.getItem("pq_ans");
+    if(sc!==null&&sa!==null){cur=parseInt(sc);answers=JSON.parse(sa);if(cur>=Qs.length){cur=0;answers={};clearState()}}
+  }catch(e){}
+}
+function clearState(){localStorage.removeItem("pq_cur");localStorage.removeItem("pq_ans")}
+
+
+let musicPlaying=true;
+const audio=new Audio("https://cdn.pixabay.com/audio/2022/10/25/audio_33845ac93a.mp3");
+audio.loop=true;audio.volume=0.15;
+window.toggleMusic=()=>{
+  musicPlaying=!musicPlaying;
+  if(musicPlaying){audio.play().catch(()=>{})}else{audio.pause()}
+  document.getElementById("musicBtn").textContent=musicPlaying?"🔊":"🔇";
+  vib(10);
+};
+
+
+function typeText(el,text,cb){
+  el.textContent="";
+  const cursor=document.createElement("span");cursor.className="typing-cursor";
+  el.appendChild(cursor);
+  let i=0;const speed=22;
+  function tick(){
+    if(i<text.length){
+      el.insertBefore(document.createTextNode(text[i]),cursor);
+      i++;
+      setTimeout(tick,speed);
+    }else{
+      setTimeout(()=>{cursor.remove();if(cb)cb()},200);
+    }
+  }
+  tick();
+}
+
+function getQuestionText(q){
+  if(cur>0&&answers.name){
+    const prefixes=["","Okay {n}, ","Okay {n}, ","Okay {n}, ","Alright {n}, ","So {n}, ","Hmm {n}, ","Okay {n}, ","{n}, ","Nice {n}, ","Last one {n}, "];
+    const p=prefixes[cur]?.replace("{n}",answers.name)||"";
+    return p+q.text;
+  }
+  return q.text;
+}
+
+function updateProgress(){
+  const p=Math.round(((cur+1)/Qs.length)*100);
+  progText.textContent=`${cur+1} of ${Qs.length}`;
+  progPct.textContent=`${p}%`;
+  progFill.style.width=`${p}%`;
+}
+
+function render(){
+  const q=Qs[cur];
+  const questionText=getQuestionText(q);
+  const showBack=cur>0;
+  let html=`<h2 id="qTitle"></h2>`;
+  if(q.type==="text"){
+    const prev=answers[q.id]||"";
+    html+=`<input type="text" id="inp" placeholder="${q.ph}" value="${prev.replace(/"/g,'&quot;')}" autofocus><div id="err" class="error"></div>`;
+    html+=`<div class="btn-row">${showBack?'<button class="back-btn" id="backBtn">←</button>':''}<button class="next-btn" id="nextBtn">Next →</button></div>`;
+  }else if(q.type==="area"){
+    const prev=answers[q.id]||"";
+    html+=`<textarea id="inp" placeholder="${q.ph}" autofocus>${prev}</textarea><div id="err" class="error"></div>`;
+    html+=`<div class="btn-row">${showBack?'<button class="back-btn" id="backBtn">←</button>':''}<button class="next-btn" id="nextBtn">${cur===Qs.length-1?"Submit 💌":"Next →"}</button></div>`;
+  }else{
+    html+=`<div class="options">${q.opts.map(o=>`<button class="opt-btn" data-opt="${o.replace(/"/g,'&quot;')}">${o}</button>`).join("")}</div>`;
+    if(showBack) html+=`<div class="btn-row" style="margin-top:14px"><button class="back-btn" id="backBtn">←</button><div style="flex:1"></div></div>`;
+  }
+  card.innerHTML=html;
+  card.classList.remove("in");card.classList.add("out");
+  requestAnimationFrame(()=>{requestAnimationFrame(()=>{card.classList.remove("out");card.classList.add("in")})});
+
+  const titleEl=document.getElementById("qTitle");
+  typeText(titleEl,questionText);
+
+  const inp=document.getElementById("inp");
+  if(inp)inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&q.type==="text")window._next()});
+  const nextBtn=document.getElementById("nextBtn");
+  if(nextBtn){
+    nextBtn.addEventListener("click",e=>{addRipple(e,nextBtn);vib(15);window._next()});
+    nextBtn.addEventListener("touchstart",e=>{addRipple(e,nextBtn)},{passive:true});
+  }
+  const backBtn=document.getElementById("backBtn");
+  if(backBtn){
+    backBtn.addEventListener("click",e=>{addRipple(e,backBtn);vib(10);window._back()});
+    backBtn.addEventListener("touchstart",e=>{addRipple(e,backBtn)},{passive:true});
+  }
+  card.querySelectorAll(".opt-btn").forEach(btn=>{
+    btn.addEventListener("click",e=>{addRipple(e,btn);vib(15);window._pick(btn.dataset.opt)});
+    btn.addEventListener("touchstart",e=>{addRipple(e,btn)},{passive:true});
+  });
+
+  updateProgress();
+}
+
+async function advance(val){
+  if(transitioning)return;
+  transitioning=true;
+  answers[Qs[cur].id]=val;
+  saveState();
+
+  if(cur===Qs.length-1){
+    vib(50);
+    card.classList.remove("in");card.classList.add("out");
+    try{await push(ref(db,"responses"),{...answers,submittedAt:new Date().toISOString()})}catch(e){console.error(e)}
+    clearState();
+    setTimeout(()=>{showFinal();transitioning=false},350);
+    return;
+  }
+
+  card.classList.remove("in");card.classList.add("out");
+  vib(8);
+  setTimeout(()=>{
+    cur++;saveState();render();transitioning=false;
+  },380);
+}
+
+function showFinal(){
+  progWrap.style.display="none";
+  const n=answers.name||"";
+  card.innerHTML=`<div class="final"><div class="big-emoji">💖</div><h2>Hey${n?", "+n:""}…</h2><p>thanks for taking the time to answer all this 🙂<br><br>I really enjoyed getting to know you a little better.<br><br>Your answers mean more than you think.<br><br>Let's keep talking ✨</p><div class="end-emoji">🤍</div><p class="credit">Made with 💗 By Kaushal Sharma</p></div>`;
+  card.classList.remove("out");card.classList.add("in");
+
+  burstHearts();
+  setTimeout(()=>burstHearts(),600);
+  setTimeout(()=>burstHearts(),1200);
+}
+
+window._next=()=>{
+  if(transitioning)return;
+  const inp=document.getElementById("inp");
+  const val=inp?.value?.trim();
+  const err=document.getElementById("err");
+  if(!val){err.textContent="please don't leave this empty 🥺";vib(20);return}
+  err.textContent="";advance(val);
+};
+window._pick=(v)=>{if(!transitioning)advance(v)};
+window._back=()=>{
+  if(transitioning||cur<=0)return;
+  transitioning=true;
+  card.classList.remove("in");card.classList.add("out");
+  vib(8);
+  setTimeout(()=>{
+    cur--;saveState();render();transitioning=false;
+  },300);
+};
+
+
+const emojis=["💖","✨","🫧","💗","🌸","💫","🤍","🩷"];
+const fc=document.getElementById("floaters");
+emojis.forEach((e,i)=>{const s=document.createElement("span");s.className="floater";s.textContent=e;s.style.left=`${8+i*12}%`;s.style.top=`${12+(i%3)*28}%`;s.style.animationDelay=`${i*.7}s`;s.style.animationDuration=`${3.5+i*.5}s`;fc.appendChild(s)});
+
+window.toggleTheme=()=>{const d=document.documentElement.classList.toggle("dark");document.getElementById("themeBtn").textContent=d?"☀️":"🌙";vib(10)};
+
+
+loadState();
+render();
+</script>
+</body>
+</html>
