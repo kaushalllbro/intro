@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Questions for Sharma Ji</title>
+<title>Intro De Diyo!</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -99,7 +99,7 @@ const app=initializeApp({apiKey:"AIzaSyCTVb-DQ3eZJdsITslADyPwBLX0ZdXlCb0",authDo
 const db=getDatabase(app);
 
 const Qs=[
-{id:"name",text:"What should I call you?? 🥰",type:"text",ph:"your name or nickname…"},
+{id:"name",text:"What should I call you??",type:"text",ph:"your name or nickname…"},
 {id:"coffeeOrTea",text:"Coffee ☕ or Tea 🍵?",type:"btn",opts:["Coffee ☕","Tea 🍵"]},
 {id:"personality",text:"Are you more introvert, extrovert, or depends on the person?",type:"btn",opts:["Introvert 🌿","Extrovert 🎉","Depends 🤷"]},
 {id:"hobby",text:"One thing you really enjoy doing in your free time? 🎨",type:"text",ph:"reading, gaming, cooking…"},
@@ -108,7 +108,7 @@ const Qs=[
 {id:"smallJoy",text:"What's a small thing that makes you happy? 😊",type:"text",ph:"sunsets, good songs, warm blankets…"},
 {id:"chatTime",text:"Late-night chats 🌙 or random daytime texts ☀️?",type:"btn",opts:["Late-night 🌙","Daytime ☀️"]},
 {id:"firstImpression",text:"First impression of me? (be honest 😄)",type:"text",ph:"don't hold back haha"},
-{id:"funThing",text:"If we ever met, what would be a fun thing to do together? 🤔",type:"text",ph:"road trip, café, stargazing…"},
+{id:"funThing",text:"If we ever met(Like outside school..), what would be a fun thing to do together? 🤔",type:"text",ph:"road trip, café, stargazing…"},
 {id:"anythingElse",text:"Anything you wanna tell me?? 💬",type:"area",ph:"could be anything… I'll read it properly n keep it in mind!! 🙂"}
 ];
 
@@ -134,7 +134,7 @@ function addRipple(e,el){
 
 function burstHearts(){
   const container=document.getElementById("heartsBurst");
-  const hearts=["💖","💗","💕","💓","🩷","🤍","✨","💘"];
+  const hearts=["🤘🏻","💗","💕","💓","🩷","🤍","✨","🤟"];
   const cx=window.innerWidth/2,cy=window.innerHeight/2;
   for(let i=0;i<28;i++){
     const h=document.createElement("span");
